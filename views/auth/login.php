@@ -23,7 +23,7 @@
 
         #loginBox{
             width: 500px;
-            height: 230px;
+            min-height: 230px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -73,16 +73,25 @@
                 <header>
                     Login Form
                 </header>
+                <div style="<?php if(!isset($error)){echo'display:none;';} ?>" class="row">
+                    <?php
+
+                    if(isset($error)){
+                        echo $error;
+                    }
+
+                    ?>
+                </div>
 
                 <div class="row">
 
-                    <input required type="text" placeholder="Username" />
+                    <input name="username" required type="text" placeholder="Username" />
     
                 </div>
 
                 <div class="row">
 
-                    <input required type="password" placeholder="Password" />
+                    <input name="password" required type="password" placeholder="Password" />
 
                 </div>
                 

@@ -4,7 +4,7 @@ namespace app\Models;
 
 class Model{
 
-    private $mysqli;
+    protected $mysqli;
 
     protected $table = '';
 
@@ -15,9 +15,11 @@ class Model{
 
         $this->mysqli = new \mysqli($coords['host'],$coords['username'],$coords['password'],$coords['dbName']);
 
+        $this->mysqli->set_charset("utf8");
+
     }
 
-    protected function getAll(){
+    public function getAll(){
 
         $stmt = $this->mysqli->stmt_init();
 
@@ -29,6 +31,21 @@ class Model{
 
         return $result->fetch_all(MYSQLI_ASSOC);
 
+    }
+
+    public function getSpecific($id){
+
+        $stmt = $this->mysqli->stmt_init();
+
+        $stmt->prepare('SELECT * FROM '.$this->table.' WHERE `id` = ?');
+
+        $stmt->bind_param('i',$id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
     }
 
 }

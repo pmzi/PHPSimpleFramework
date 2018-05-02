@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Post Title - Blah Blah Blah</title>
 
     <style>
         body {
@@ -22,33 +22,39 @@
             direction: rtl;
         }
 
-        #postBox {
+        #postBox{
             width: 100%;
             max-width: 1000px;
             padding: 10px;
             box-sizing: border-box;
             background-color: white;
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
             margin: auto;
             margin-top: 20px;
         }
 
-        header {
+        header{
             width: 100%;
             height: 50px;
             border-bottom: 1px solid #eee;
         }
 
-        header>input {
+        header>span{
             width: 100%;
-            outline: none;
+            display: block;
             height: 30px;
-            border: 1px solid cornflowerblue;
-            padding-right: 10px;
-            box-sizing: border-box;
+            line-height: 30px;
+        }
+        header>time{
+            width: 100%;
+            display: block;
+            line-height: 20px;
+            height: 20px;
+            font-size: 12px;
+            font-style: italic;
         }
 
-        #postContent {
+        #postContent{
             width: 100%;
             min-height: 30px;
             line-height: 30px;
@@ -56,31 +62,37 @@
             box-sizing: border-box;
         }
 
-        textarea {
-            width: 100%;
-            outline: none;
-            height: 30px;
-            border: 1px solid cornflowerblue;
-            padding-right: 10px;
-            box-sizing: border-box;
-            height: 200px;
-            margin-top: 10px;
-        }
     </style>
 
 </head>
 
 <body>
     <div id="wrapper">
-        <form method="post">
-            <div id="postBox">
-                <header>
-                    <input name="title" type="text" value="<?php if(isset($post)){echo $post['title'];} ?>">
-                </header>
-                <textarea name="content"><?php if(isset($post)){echo $post['content'];} ?></textarea>
-                <input type="submit" value="ذخیره" />
-            </div>
-        </form>
+        <article id="postBox">
+            <header>
+                <span>
+                    <?php
+
+                    echo $post['title'];
+
+                    ?>
+                </span>
+                <time>
+                    <?php
+
+                    echo $post['created'];
+
+                    ?>
+                </time>
+            </header>
+            <div id="postContent">
+                <?php
+
+                    echo $post['content'];
+
+                ?>
+             </div>
+        </article>
     </div>
 </body>
 

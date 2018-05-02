@@ -15,9 +15,9 @@ class Controller{
 
     }
 
-    protected function view($viewName,$arrayOfArgs){
+    protected function view($viewName,$arrayOfArgs = []){
 
-        foreach ($arrayOfArgs as $arg=>$key) {
+        foreach ($arrayOfArgs as $key=>$arg) {
             ${$key} = $arg;
         }
 
