@@ -30,6 +30,11 @@ class Posts extends Controller {
 
     public function edit($id){
 
+        if(!isset($_SESSION['isAdmin'])){
+            echo "403";
+            return;
+        }
+
         if(count($_POST) != 0){
             $this->editPost($id);
         }
@@ -53,6 +58,11 @@ class Posts extends Controller {
     }
 
     public function add(){
+
+        if(!isset($_SESSION['isAdmin'])){
+            echo "403";
+            return;
+        }
 
         if(count($_POST) != 0){
             return $this->addPost();
@@ -78,6 +88,11 @@ class Posts extends Controller {
     }
 
     public function delete($id){
+
+        if(!isset($_SESSION['isAdmin'])){
+            echo "403";
+            return;
+        }
 
         $post = new Post();
 
